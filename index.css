@@ -103,6 +103,10 @@ body{
     text-align: center;
     font-size: 20px;
 }
+.stats{
+    text-align: center;
+    font-size: 20px;
+}
 
 @keyframes nameAlert{
     0%{

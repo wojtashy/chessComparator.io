@@ -34,9 +34,9 @@ function getPlayer(username,id){
     .then(data => {
         console.log(data);
 
-        player.innerHTML+= '<p class="username">Blitz: '+data["chess_blitz"]["last"]["rating"]+'</p>';
-        player.innerHTML+= '<p class="username">Blitz: '+data["chess_rapid"]["last"]["rating"]+'</p>';
-        player.innerHTML+= '<p class="username">Blitz: '+data["chess_bullet"]["last"]["rating"]+'</p>';
+        player.innerHTML+= '<p class="stats">Blitz: '+data["chess_blitz"]["last"]["rating"]+'</p>';
+        player.innerHTML+= '<p class="stats">Rapid: '+data["chess_rapid"]["last"]["rating"]+'</p>';
+        player.innerHTML+= '<p class="stats">Bullet: '+data["chess_bullet"]["last"]["rating"]+'</p>';
 
     } )
 
