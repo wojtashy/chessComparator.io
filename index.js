@@ -1,5 +1,9 @@
-var pfp;
-var p1 = document.getElementById("playerInfo1");
+var username;
+var avatar;
+var url;
+var blitz;
+var rapid;
+var bullet;
 
 function getPlayer(username,id){
 
@@ -15,16 +19,21 @@ function getPlayer(username,id){
         
         console.log(data);
 
+        url = data["url"];
+
         //Get user pfp
         if(data["avatar"]==null){
-            player.innerHTML='<a href="'+data["url"]+'" target="blank"><img class="pfp" src="resources/user.svg"></a>';
+            avatar = "resources/user.svg";
+            //player.innerHTML='<a href="'+data["url"]+'" target="blank"><img class="pfp" src="resources/user.svg"></a>';
         }
         else{
-            player.innerHTML='<a href="'+data["url"]+'" target="blank"><img class="pfp" src="'+data["avatar"]+'"></a>';
+            avatar = data["avatar"];
+            //player.innerHTML='<a href="'+data["url"]+'" target="blank"><img class="pfp" src="'+data["avatar"]+'"></a>';
         }
 
         //Get user username
-        player.innerHTML+= '<p class="username">'+data["username"]+'</p>';
+        username = data["username"];
+        //player.innerHTML+= '<p class="username">'+data["username"]+'</p>';
 
         document.getElementById("loading").style.display = "none";
     } )
@@ -34,12 +43,17 @@ function getPlayer(username,id){
     .then(data => {
         console.log(data);
 
-        player.innerHTML+= '<p class="stats">Blitz: '+data["chess_blitz"]["last"]["rating"]+'</p>';
-        player.innerHTML+= '<p class="stats">Rapid: '+data["chess_rapid"]["last"]["rating"]+'</p>';
-        player.innerHTML+= '<p class="stats">Bullet: '+data["chess_bullet"]["last"]["rating"]+'</p>';
+        blitz = data["chess_blitz"]["last"]["rating"];
+        rapid = data["chess_rapid"]["last"]["rating"];
+        bullet = data["chess_bullet"]["last"]["rating"];
+
+        player.innerHTML='<a href="'+url+'" target="blank"><img class="pfp" src="'+avatar+'"></a>';
+        player.innerHTML+= '<p class="username">'+username+'</p>';
+        player.innerHTML+= '<p class="stats">Blitz: '+blitz+'</p>';
+        player.innerHTML+= '<p class="stats">Rapid: '+rapid+'</p>';
+        player.innerHTML+= '<p class="stats">Bullet: '+bullet+'</p>';
 
     } )
-
     .catch(console.log(Error))
 }
 
